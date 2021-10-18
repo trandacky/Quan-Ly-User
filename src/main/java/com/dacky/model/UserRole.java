@@ -1,10 +1,15 @@
 package com.dacky.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Table(name = "user_role")
@@ -15,11 +20,13 @@ public class UserRole extends AbstractEntity{
 	@Column(name = "id")
 	private Long id;
 	
-	@Column(name ="role_id")
-	private Long roleId;
+	@ManyToOne
+	@JoinColumn(name = "user_id", nullable = true)
+	private User user;
 	
-	@Column(name ="user_id")
-	private String userId;
+	@ManyToOne
+	@JoinColumn(name = "role_id", nullable = true)
+	private Role role;
 	
 	public Long getId() {
 		return id;
@@ -27,16 +34,20 @@ public class UserRole extends AbstractEntity{
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public Long getRoleId() {
-		return roleId;
+	
+	public User getUser() {
+		return user;
 	}
-	public void setRoleId(Long roleId) {
-		this.roleId = roleId;
+	public void setUser(User user) {
+		this.user = user;
 	}
-	public String getUserId() {
-		return userId;
+	public Role getRole() {
+		return role;
 	}
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setRole(Role role) {
+		this.role = role;
 	}
+	
+	
+	
 }

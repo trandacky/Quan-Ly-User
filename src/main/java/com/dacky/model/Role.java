@@ -1,10 +1,13 @@
 package com.dacky.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Table(name = "role")
@@ -17,6 +20,9 @@ public class Role extends AbstractEntity{
 	
 	@Column(name = "role")
 	private String role;
+	
+	@OneToMany(mappedBy = "id")
+	private List<UserRole> userRoles;
 
 	public Long getId() {
 		return id;
@@ -33,4 +39,13 @@ public class Role extends AbstractEntity{
 	public void setRole(String role) {
 		this.role = role;
 	}
+
+	public List<UserRole> getUserRoles() {
+		return userRoles;
+	}
+
+	public void setUserRoles(List<UserRole> userRoles) {
+		this.userRoles = userRoles;
+	}
+	
 }
