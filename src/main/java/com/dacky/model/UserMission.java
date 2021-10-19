@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Table(name = "user_mission")
@@ -16,11 +18,13 @@ public class UserMission extends AbstractEntity {
 	@Column(name = "id")
 	private Long id;
 	
-	@Column(name ="user_id")
-	private String userID;
+	@ManyToOne
+	@JoinColumn(name = "user_id", nullable = true)
+	private User user;
 	
-	@Column(name = "mission_id")
-	private Long missopnId;
+	@ManyToOne
+	@JoinColumn(name = "mission_id", nullable = true) 
+	private Mission mission;
 
 	public Long getId() {
 		return id;
@@ -30,19 +34,20 @@ public class UserMission extends AbstractEntity {
 		this.id = id;
 	}
 
-	public String getUserID() {
-		return userID;
+	public User getUser() {
+		return user;
 	}
 
-	public void setUserID(String userID) {
-		this.userID = userID;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
-	public Long getMissopnId() {
-		return missopnId;
+	public Mission getMission() {
+		return mission;
 	}
 
-	public void setMissopnId(Long missopnId) {
-		this.missopnId = missopnId;
+	public void setMission(Mission mission) {
+		this.mission = mission;
 	}
+	
 }

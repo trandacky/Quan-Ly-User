@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -19,6 +20,10 @@ public class User extends AbstractEntity{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Long id;
+	
+	@OneToMany(mappedBy = "id")
+	
+	private List<UserMission> userMissions; 
 	
 	@Column(name = "username")
 	private String username;
@@ -41,7 +46,6 @@ public class User extends AbstractEntity{
 	@OneToMany(mappedBy = "id")
 	private List<UserRole> userRoles;
 	
-
 	public Long getId() {
 		return id;
 	}
@@ -96,6 +100,22 @@ public class User extends AbstractEntity{
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+
+	public List<UserMission> getUserMissions() {
+		return userMissions;
+	}
+
+	public void setUserMissions(List<UserMission> userMissions) {
+		this.userMissions = userMissions;
+	}
+
+	public List<UserRole> getUserRoles() {
+		return userRoles;
+	}
+
+	public void setUserRoles(List<UserRole> userRoles) {
+		this.userRoles = userRoles;
 	}	
 	
 }
